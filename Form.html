@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<body>
+<header>
+  iZooto
+</header>
+<nav>
+<a style="color:#2D2363 padding-left: 17px;" href="/Assignment/Index.html">SignUp</a> |
+<a style="color:#2D2363 " href="/Assignment/Form.html">Register User</a> 
+</nav>
+<h2 align="center">Register User </h2>
+
+<form align="center" id="form"  method="GET" >
+  <label for="fname">First name:*</label><br>
+  <input  type="text" id="fname" name="fname" ><br><br><br>
+  <label for="lname">Last name:*</label><br>
+  <input  type="text" id="lname" name="lname"><br><br><br>
+   <label for="lname">Email:*</label><br>
+  <input   id="email" name="lname"><br><br><br>
+  <label for="lname">Phone Number:*</label><br>
+  <input  type="number" id="pnumber" name="lname"><br><br><br><br><br><br>
+  <input  class="button button1" type="submit" value="submit" onclick="submitForm()">
+<input  class="button button2" type="submit" value="Clear" onclick="Clear()">
+</form> 
+ 
+
+
+</body>
+<footer>
+  <p>Copyright</p>
+</footer>
+</html>
+
+<script>
+function clear(){
+
+  document.getElementById("fname").value="";
+        document.getElementById("lname").value="";
+       document.getElementById("pnumber").value="";
+        document.getElementById("email").value="";
+}
+
+function submitForm(){
+
+var flag=ValidateInputs();
+if(flag==true){
+    if(typeof(localStorage) != "undefined"){
+        localStorage.fname = document.getElementById("fname").value;
+        localStorage.lname = document.getElementById("lname").value;
+        localStorage.pnumber = document.getElementById("pnumber").value;
+        localStorage.email = document.getElementById("email").value;
+    }
+  
+document.getElementById("form").action = "display.html";
+  document.getElementById("form").submit();
+
+}
+else
+{
+document.getElementById("form").addEventListener("click", function(event){
+  event.preventDefault()
+});
+}
+ 
+
+   
+}
+
+function ValidateInputs()
+{
+
+
+var regName = /^[a-zA-Z]+$/;
+var fname = document.getElementById('fname').value;
+var lname = document.getElementById('lname').value;
+var email=document.getElementById('email').value;
+var pnumber=document.getElementById('pnumber').value;
+if(fname==""||lname==""||email==""||pnumber==""){alert('All fields are mandatory'); return false;}
+if(!regName.test(fname))
+{
+    alert('Invalid first name given.');
+  
+
+  return false;
+}
+
+if(!regName.test(lname))
+{
+    alert('Invalid last name given.');
+   
+
+        return false;
+
+}
+if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)))
+  {
+     alert('Invalid email given.');
+return false;
+  }
+if(!(/^[2-9]{2}[0-9]{8}$/.test(pnumber)))
+{
+  alert('Invalid phone number given.');
+return false;
+}
+
+return true;
+}
+
+</script>
+
+<style>
+.button1:hover {
+  background-color: #2D2363;
+  color: white;
+}
+.button2{
+  background-color: #777;
+  color: black;
+  border: 2px solid #777;
+  }
+.button1 {
+  background-color: #2D2363;
+  color: black;
+  border: 2px solid #2D2363;
+  }
+  .button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+footer {
+  background-color: #777;
+ position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+ height: 50px;
+}
+ header {
+  background-color: #666;
+  padding: 30px;
+  text-align: center;
+  text-margin-top:0px;
+ 
+  font-size: 35px;
+  color: white;
+  height:26px;
+}
+</style>
